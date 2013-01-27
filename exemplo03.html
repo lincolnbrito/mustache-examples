@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo 03 - Templates como arquivos externos</title>
+    <style type="text/css">
+        pre{
+            background-color: #efede3;
+        }
+    </style>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function(){
+            var view = {
+                name: 'Joe',
+                occupation: 'Web Developer'
+            };
+            $('#load01').click(function(){
+                $('#templates').load('exemplo03_template.html #template1', function(){
+                    var template = $('#template1').html();
+                    var output = Mustache.render(template, view);
+                    $('#person').html(output);
+                });
+            });
+            $('#load02').click(function(){
+                $('#templates').load('exemplo03_template.html #template2', function(){
+                    var template = $('#template2').html();
+                    var output = Mustache.render(template, view);
+                    $('#person').html(output);
+                });
+            });
+            $('#load03').click(function(){
+                $('#templates').load('exemplo03_template.html #template3', function(){
+                    var template = $('#template3').html();
+                    var output = Mustache.render(template, view);
+                    $('#person').html(output);
+                });
+            });
+            
+        });
+    </script>
+</head>
+<body>
+    <h1>Exemplo 03 - Templates como arquivos externos</h1>
+    <p>
+        Nessa técnica vamos utilizar o jQuery para implementar os templates. jQuery possui uma função chamada load(), que permite buscar por arquivos externos. Vamos utilizar essa função para carregar dinamicamente nossos templates externos.
+        a função load() executa scripts ao invés de retorná-los, então não podemos criar os templates dentro das tags script como fizemos no exemplo anterior.
+    </p>
+    <p>
+        Estamos usando elementos &lt;div&gt; para templates ao invés de scripts para manter a compatibilidade com a função load do jQuery’s.
+        Aqui temos três templates diferentes com IDs diferentes. Agora, vamos utilizá-los.
+    </p>
+        
+    <div class="container">
+        <div class="line number1 index0 alt2">
+            <code class="xml plain">&lt;</code>
+            <code class="xml keyword">div</code>
+            <code class="xml color1">id</code>
+            <code class="xml plain">=</code>
+            <code class="xml string">"template1"</code>
+            <code class="xml plain">&gt;</code>
+        </div>
+        <div class="line number2 index1 alt1">
+            <code class="xml plain">&lt;</code>
+            <code class="xml keyword">h1</code>
+            <code class="xml plain">&gt;{{name}}&lt;/</code>
+            <code class="xml keyword">h1</code>
+            <code class="xml plain">&gt;</code>
+        </div>
+        <div class="line number3 index2 alt2">
+            <code class="xml plain">&lt;/</code>
+            <code class="xml keyword">div</code>
+            <code class="xml plain">&gt;</code>
+        </div>
+        <div class="line number4 index3 alt1">
+            <code class="xml plain">&lt;</code>
+            <code class="xml keyword">div</code>
+            <code class="xml color1">id</code>
+            <code class="xml plain">=</code>
+            <code class="xml string">"template2"</code>
+            <code class="xml plain">&gt;</code>
+        </div>
+        <div class="line number5 index4 alt2">
+            <code class="xml plain">&lt;</code>
+            <code class="xml keyword">div</code>
+            <code class="xml plain">&gt;{{name}}&lt;/</code>
+            <code class="xml keyword">div</code>
+            <code class="xml plain">&gt;</code>
+        </div>
+        <div class="line number6 index5 alt1">
+            <code class="xml plain">&lt;/</code>
+            <code class="xml keyword">div</code>
+            <code class="xml plain">&gt;</code>
+        </div>
+        <div class="line number7 index6 alt2">
+            <code class="xml plain">&lt;</code>
+            <code class="xml keyword">div</code>
+            <code class="xml color1">id</code>
+            <code class="xml plain">=</code>
+            <code class="xml string">"template3"</code>
+            <code class="xml plain">&gt;</code>
+        </div>
+        <div class="line number8 index7 alt1">
+            <code class="xml plain">&lt;</code>
+            <code class="xml keyword">p</code>
+            <code class="xml plain">&gt;&lt;</code>
+            <code class="xml keyword">span</code>
+            <code class="xml plain">&gt;{{name}}&lt;/</code>
+            <code class="xml keyword">span</code>
+            <code class="xml plain">&gt;&lt;/</code>
+            <code class="xml keyword">p</code>
+            <code class="xml plain">&gt;</code>
+        </div>
+        <div class="line number9 index8 alt2">
+            <code class="xml plain">&lt;/</code>
+            <code class="xml keyword">div</code>
+            <code class="xml plain">&gt;</code>
+        </div>
+    </div>
+    
+    <hr>
+    <h2>Resultado</h2>
+    <a href="#" id="load01">Carrega template #template1</a>
+    <a href="#" id="load02">Carrega template #template2</a>
+    <a href="#" id="load03">Carrega template #template3</a>
+    <div id="person"></div>
+    <div id="templates" style="display:none;"></div>
+</body>
+</html>

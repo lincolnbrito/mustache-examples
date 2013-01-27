@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo 01 - Template básico</title>
+    <style type="text/css">
+        pre{
+            background-color: #efede3;
+        }
+    </style>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        var view = {
+            name: 'Joe',
+            occupation: 'Web Developer'
+        };
+        $(function(){
+            var output = Mustache.render('{{name}} is a {{occupation}}', view);
+            $('#person').html(output);
+        });
+    </script>
+</head>
+<body>
+    <h1>Exemplo 01 - Template básico</h1>
+    <p>Neste exemplo é utilizado o template básico para renderizar o valor contido no objeto</p>
+    <p>
+        <pre>
+            var view = {
+                name: 'Joe',
+                occupation: 'Web Developer'
+            };
+            $(function(){
+                var output = Mustache.render('{{name}} is a {{occupation}}', view);
+                $('#person').html(output);
+            });
+        </pre>
+    </p>
+    <h2>Resultado</h2>
+    <div id="person"></div>
+</body>
+</html>

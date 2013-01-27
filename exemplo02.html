@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo 02 - Templates com scripts inline</title>
+    <style type="text/css">
+        pre{
+            background-color: #efede3;
+        }
+    </style>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        var view = {
+            name: 'Joe',
+            occupation: 'Web Developer'
+        };
+        $(function(){
+            var template = $('#sample_template').html();
+            var output = Mustache.render(template, view);
+            $('#person').html(output);
+        });
+    </script>
+</head>
+<body>
+    <h1>Exemplo 02 - Templates como scripts inline</h1>
+    <p>
+        Podemos definir os dados do template dentro de uma tag &lt;script&gt; e incluí-la no documento HTML. Para impedir que o browser execute o código do template, devemos mudar o MIME type para algo diferente de text/javascript. Alguns MIME types comuns são text/html, text/template ou text/mustache. O exemplo a seguir é um simples template usando este método.
+    </p>
+    <pre>
+        &lt;script id="sample_template" type="text/html"&gt;
+            &lt;h1&gt;{{name}}&lt;/h1&gt;
+        &lt;/script&gt;
+
+        &lt;script type="text/javascript"&gt;
+            var view = {
+                name: 'Joe',
+                occupation: 'Web Developer'
+            };
+            $(function(){
+                var template = $('#sample_template');
+                var output = Mustache.render(template, view);
+                $('#person').html(output);
+            });
+        &lt;/script&gt;
+    </pre>
+
+    <p>Você pode incluir quantos templates desejar no documento com IDs diferentes. Quando quiser usar um template, pegue o HTML dentro da tag script, e passe-o como template.</p>
+    <p>
+        Como você pode ver, templates são armazenados separadamente e usados dinamicamente quando requisitados. Esse método aumenta a possibilidade de reuso. Entretanto, usando scripts inline limita o escopo do tempalte a uma única página. Se tiver múltplas páginas, você terá que redefinir seus templates novamente. Assim, incluindo seus templates como arquivos externos será uma ótima solução - assim como seus arquivos css.
+    </p>
+    <hr>
+    <h2>Resultado</h2>
+    
+    <div id="person"></div>
+
+    <script id="sample_template" type="text/html">
+        <h1>{{name}}</h1>
+    </script>
+</body>
+</html>
